@@ -4,12 +4,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { MapPage } from './map';
 import { MapPageRoutingModule } from './map-routing.module';
-
+import { ComponentsModule } from '../../components.module';
+import { MyModalPageModule } from '../../modals/my-modal/my-modal.module';
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    MapPageRoutingModule
+    MapPageRoutingModule,
+    ComponentsModule,
+    MyModalPageModule
   ],
   declarations: [
     MapPage,

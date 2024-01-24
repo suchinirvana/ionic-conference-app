@@ -1,12 +1,43 @@
 <ion-header>
+  <!-- <page-header></page-header> -->
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Map</ion-title>
-  </ion-toolbar>
+
+    <ion-title>
+      <a routerLink="/app/tabs/map/"><img src="assets/images/logo.svg" width="174"  /></a>
+
+    </ion-title>
+    <ion-buttons slot="end">
+        
+		    <ion-select interface="action-sheet" [value]="selectedCountry" (ionChange)="onChange($event)">
+		      <ion-select-option *ngFor="let country of countries" value={{country.country_code}}>{{country.country_code}}</ion-select-option>
+		      
+		    </ion-select>
+		
+    </ion-buttons>
+</ion-toolbar>
 </ion-header>
 
 <ion-content>
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+	<div class="home-banner margin-top">
+	  <div class="container">
+	    <h1 class="heading">Neighbors Protecting Neighbors<br>Everywhere in the World</h1>
+	    <div class="seach-field">
+	    	<!-- <button ion-button (click)="openWithSystemBrowser('http://localhost/my-safe-alley/listing/appListing')">Open with System browser</button>
+    <button ion-button (click)="openWithInAppBrowser('http://localhost/my-safe-alley/listing/appListing')">Open with In App browser</button>
+    <button ion-button (click)="openWithCordovaBrowser('http://localhost/my-safe-alley/listing/appListing')">Open with Cordova browser</button> -->
+
+	      <input type="text" id="pac-input" name="city" placeholder="Activity type, License plate, Address and business name etc" />
+
+	      <input type="submit" value="search">
+	    </div>
+	  </div>
+	</div>
   <div #mapCanvas class="map-canvas"></div>
 </ion-content>

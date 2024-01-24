@@ -1,0 +1,78 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+<ion-content>
+	<div class="inner-banner margin-top"></div>
+	<section class="common-content listing-details">
+  <div class="container">
+    <div class="two-aside">
+      <div class="big-col" style="width: 100%">
+        <div class="profile-img">
+        	<img *ngIf="user.user_image_url==''" src="https://www.mysafealley.com/assets/front/images/placeholder.png" width="129" height="129" alt="">
+        	<img *ngIf="user.user_image_url!=''" src={{user.user_image_url}} width="129" height="129" alt="">
+        </div>
+        <h2>{{user.user_name}}</h2>
+        <div class="icon-row">
+          <div class="box"> 
+            
+              <ion-icon name="location-outline"></ion-icon> {{listing.address}}
+          	
+          </div>
+          <div class="box"> 
+                <a href="javascript:;;" [attr.data-id]="listing.id" title="like" class="like_{{listing.id}}" (click)="process($event)">
+                	<ion-icon name="thumbs-up-outline"></ion-icon> Like
+               	</a> 
+          </div>
+          <div class="box"> 
+          		<a href="#"><ion-icon name="chatbox-outline"></ion-icon> Comment</a> 
+          </div>
+
+          <div class="box"> <a href="javascript:;;" [attr.data-id]="listing.id" title="report" class="like_{{listing.id}}" (click)="process($event)">
+          	<ion-icon name="flag-outline"></ion-icon> Report this</a>
+            <a style="display: none;" class="tst simple-ajax-popup-align-top" href="https://www.mysafealley.com/listing/report-listing/41">
+            	<ion-icon name="flag-outline"></ion-icon> Report this</a>
+           </div>
+        </div>
+
+        <div class="cont">
+        	<h3>Details</h3>
+        	<p> {{listing.description}}</p>
+        </div>
+        
+
+        <div class="cont">
+	        <h3>Activity</h3>
+	        <p> 
+	            Activity Reported : {{listing.category}}<br>
+	            Incident Date : {{listing.incident_date}}<br>
+	            Reported Date : {{listing.add_date}}
+	        </p>
+    	</div>
+
+    	<div class="cont">
+    		<h3>Videos</h3>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+  <div class="cont">
+            <h3 class="ion-padding-start">Comments</h3>
+            <ion-row>
+            	<ion-col *ngFor="let obj of comments; let s = index" class="ion-align-self-center" size="12" size-md="12">
+			        <ion-item lines="none" style="padding-bottom: 2px;background: #d5d5d5;">
+			          <ion-avatar slot="start">
+			            <img src="https://www.mysafealley.com/assets/front/images/placeholder.png">
+			          </ion-avatar>
+			          <ion-label class="ion-padding-start">
+			            <strong>{{obj.user_name}}</strong>
+			            <p>{{obj.date_formatted}}</p>
+			            <div [innerHTML]="obj.omessage"></div>
+			          </ion-label>
+			        </ion-item>
+		    	</ion-col>
+		    </ion-row>
+        </div>
+</section>
+</ion-content>

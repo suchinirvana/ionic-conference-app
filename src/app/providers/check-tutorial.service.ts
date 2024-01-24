@@ -10,10 +10,11 @@ export class CheckTutorial implements CanLoad {
   canLoad() {
     return this.storage.get('ion_did_tutorial').then(res => {
       if (res) {
-        this.router.navigate(['/app', 'tabs', 'schedule']);
+        this.router.navigate(['/app', 'tabs', 'map']);
         return false;
       } else {
-        return true;
+        this.router.navigate(['/app', 'tabs', 'map']);
+        return false;
       }
     });
   }

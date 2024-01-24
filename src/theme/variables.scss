@@ -21,8 +21,9 @@
  */
 
  :root {
+    --ion-font-family: 'Montserrat', sans-serif;
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #000000;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -274,8 +275,8 @@
  */
 
 .dark-theme {
-  --ion-color-primary: #428cff;
-  --ion-color-primary-rgb: 66,140,255;
+  --ion-color-primary: #ffffff;
+  --ion-color-primary-rgb: 201, 0, 72;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
   --ion-color-primary-shade: #3a7be0;

@@ -1,13 +1,6 @@
-.support-logo {
-  padding: 20px 0;
-  min-height: 200px;
-  text-align: center;
-}
-
-.support-logo img {
-  max-width: 150px;
-}
-
-.list {
-  margin-bottom: 0;
-}
+ion-label{ margin-top:10px; }
+ion-item, ion-list, .list-md{ --background: none; padding:0; border:0}
+ion-item .item-inner{ padding:0!important; }
+p.err{ font-size : 13px}
+main{ background: #f5f5f5 }
+ion-textarea{ border: 1px solid #d5d5d5;border-radius: 4px !important; }

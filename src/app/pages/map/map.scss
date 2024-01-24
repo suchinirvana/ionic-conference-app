@@ -1,7 +1,7 @@
 .map-canvas {
   position: absolute;
 
-  height: 100%;
+  height: 70%;
   width: 100%;
 
   background-color: transparent;
@@ -13,3 +13,15 @@
 .show-map {
   opacity: 1;
 }
+
+.home-banner { background: #d8d8d8 url(/assets/images/pattern-bg.jpg) bottom center no-repeat; background-size: cover; background-color : #d8d8d8; padding: 30px 0; text-align: center }
+.home-banner .heading { font-size: 20px; font-weight: 500; color: #fff; }
+.seach-field { position: relative; max-width: 480px; margin: 30px auto 0 }
+.seach-field input[type="text"] { border-color: #f6f6f6; background-color: #f6f6f6; height: 44px; padding: 11px 50px 11px 20px; border-radius: 30px!important; }
+.seach-field input[type="text"]:focus { border-color: #003065 }
+.seach-field input[type="submit"] { background: url(/assets/images/search-icon.png) left center no-repeat; padding: 22px; position: absolute; top: 0; right: 0; font-size: 0 }
+.seach-field input[type="submit"]:hover { opacity: 0.5 }
+.info .listing-row .img-box img { width: 40px; position: relative; border-radius: 0;}
+.listing-row .img-box { width: 40px;}
+.listing-row .details {overflow: hidden;}
+.info .listing-row { padding: 6px 0 13px 0px; }

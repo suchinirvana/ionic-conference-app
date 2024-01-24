@@ -1,0 +1,56 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center" *ngIf="isLoggedIn">
+    <div class="common-content">
+      
+      <div class="container">
+        <ion-card>
+          <ion-card-content>
+            <form #loginForm="ngForm" novalidate>
+              <ion-list>
+                <ion-radio-group value={{setting.is_subscribed}} name="radio-group" (ionChange)="radioGroupChange($event)">
+                  <ion-list-header>
+                    <h4 class="ion-text-center">Notification Settings</h4>
+                  </ion-list-header>
+
+                  <ion-item class="ion-no-padding">
+                    <ion-label>Receive all notifications</ion-label>
+                    <ion-radio slot="start" value="1" class="ion-margin-end"></ion-radio>
+                  </ion-item>
+
+                  <ion-item class="ion-no-padding">
+                    <ion-label>Unsubscribe from all notifications</ion-label>
+                    <ion-radio slot="start" value="0" class="ion-margin-end"></ion-radio>
+                  </ion-item>
+
+                  <ion-item class="ion-no-padding">
+                    <ion-label>Receive notifications for selected activities</ion-label>
+                    <ion-radio slot="start" value="2" class="ion-margin-end"></ion-radio>
+                  </ion-item>
+
+                  
+                </ion-radio-group>
+                  <ion-item *ngFor="let entry of categories">
+                    <ion-label>{{entry.category_title}}</ion-label>
+                    <ion-checkbox slot="start" (ionChange)="selectMember(entry, $event)" [(ngModel)]="entry.isChecked" class="ion-margin-end" name={{entry.id}}></ion-checkbox>
+                  </ion-item>
+
+
+                  <ion-item lines="none">
+                    <p class="ion-padding">
+                      <ion-button (click)="onUpdateProfile(loginForm)" type="submit" expand="block" fill="outline" shape="round" size="default">Update Settings</ion-button>
+                    </p>
+                  </ion-item>
+
+                
+              </ion-list>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

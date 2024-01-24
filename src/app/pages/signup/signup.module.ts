@@ -5,13 +5,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup';
 import { SignupPageRoutingModule } from './signup-routing.module';
-
+import { ComponentsModule } from '../../components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SignupPageRoutingModule
+    SignupPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [
     SignupPage,

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1020111877775",
+    "project_id": "mysafealleyapp",
+    "storage_bucket": "mysafealleyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020111877775:android:42db1ea20744a88dd5a2fa",
+        "android_client_info": {
+          "package_name": "com.mysafealley.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020111877775-2mdm1d2h9d8h53lp3ggvma7ft5ls9o46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcSVznRllM6AaeEVXAIpqkbn-qZqIa_Lc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020111877775-2mdm1d2h9d8h53lp3ggvma7ft5ls9o46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

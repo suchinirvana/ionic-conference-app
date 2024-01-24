@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
-import { SchedulePage } from '../schedule/schedule';
 
 
 const routes: Routes = [
@@ -11,33 +10,23 @@ const routes: Routes = [
     children: [
       {
         path: 'schedule',
-        children: [
-          {
-            path: '',
-            component: SchedulePage,
-          },
-          {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          }
-        ]
+        loadChildren: () => import('../map/map.module').then(m => m.MapModule)
       },
       {
-        path: 'speakers',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../speaker-list/speaker-list.module').then(m => m.SpeakerListModule)
-          },
-          {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          },
-          {
-            path: 'speaker-details/:speakerId',
-            loadChildren: () => import('../speaker-detail/speaker-detail.module').then(m => m.SpeakerDetailModule)
-          }
-        ]
+        path: 'signup',
+        loadChildren: () => import('../signup/signup.module').then(m => m.SignUpModule)
+      },
+      {
+        path: 'search',
+        loadChildren: () => import('../search/search.module').then(m => m.SearchModule)
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
+      },
+      {
+        path: 'content/:id',
+        loadChildren: () => import('../content/content.module').then(m => m.ContentModule)
       },
       {
         path: 'map',
@@ -58,8 +47,41 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'support',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../support/support.module').then(m => m.SupportModule)
+          }
+        ]
+      },
+      {
+        path: 'account',
+        loadChildren: () => import('../account/account.module').then(m => m.AccountModule)
+      },
+      {
+        path: 'settings',
+        loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
+      },
+      {
+        path: 'edit-profile',
+        loadChildren: () => import('../editprofile/editprofile.module').then(m => m.EditprofileModule)
+      },
+      {
+        path: 'reports',
+        loadChildren: () => import('../report/report.module').then(m => m.ReportModule)
+      },
+      {
+        path: 'listing/:id',
+        loadChildren: () => import('../listing/listing.module').then(m => m.ListingModule)
+      },
+      {
+        path: 'verify-account/:id',
+        loadChildren: () => import('../verifyaccount/verifyaccount.module').then(m => m.VerifyaccountModule)
+      },
+      {
         path: '',
-        redirectTo: '/app/tabs/schedule',
+        redirectTo: '/app/tabs/map',
         pathMatch: 'full'
       }
     ]

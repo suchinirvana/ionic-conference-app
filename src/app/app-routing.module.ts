@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckTutorial } from './providers/check-tutorial.service';
-
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tutorial',
+    redirectTo: '/app/tabs/map',
     pathMatch: 'full'
   },
   {
     path: 'account',
     loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./pages/editprofile/editprofile.module').then(m => m.EditprofileModule)
   },
   {
     path: 'support',
@@ -27,12 +30,11 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsModule)
+  },  {
+    path: 'my-modal',
+    loadChildren: () => import('./modals/my-modal/my-modal.module').then( m => m.MyModalPageModule)
   },
-  {
-    path: 'tutorial',
-    loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
-    canLoad: [CheckTutorial]
-  }
+
 ];
 
 @NgModule({

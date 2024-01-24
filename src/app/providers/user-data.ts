@@ -45,6 +45,9 @@ export class UserData {
 
   logout(): Promise<any> {
     return this.storage.remove(this.HAS_LOGGED_IN).then(() => {
+      this.storage.set('safealley_token','');
+      this.storage.set('safealley_user','');
+      this.storage.set('plan_end_date','')
       return this.storage.remove('username');
     }).then(() => {
       window.dispatchEvent(new CustomEvent('user:logout'));

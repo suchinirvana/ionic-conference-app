@@ -1,0 +1,39 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+<ion-content>
+  <div class="common-content">
+
+    <div class="container">
+      <h2>My Reports</h2>
+      <div *ngIf="series.length>0">
+        <ion-list *ngFor="let obj of series; let s = index" class="ion-padding-top ion-padding-bottom">
+          <ion-item-sliding id="item{{obj.id}}">
+            <ion-item button (click)="buttonClick($event)" [attr.data-id]="obj.id" id="{{obj.id}}">
+              <ion-label>
+                <h2>{{obj.address}}</h2>
+                <p>Activity Reported : {{obj.category}}</p>
+                <p>Incident Date : {{obj.date_formatted}}</p>
+              </ion-label>
+              <ion-note slot="end">
+                {{obj.reported_date_formatted}}
+              </ion-note>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option color="danger">
+                <ion-icon slot="icon-only" name="trash" [attr.data-id]="obj.id" (click)="deleteListing($event)"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+      <div *ngIf="series.length==0">
+        <p>No record found.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+</ion-content>

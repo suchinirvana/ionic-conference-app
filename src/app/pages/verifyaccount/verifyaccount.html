@@ -1,0 +1,69 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content>
+  <div class="common-content">
+      <div class="container" *ngIf="code_received==0">
+        <h2>Verify Yourself</h2>
+      <ion-card class="ion-margin-top">
+        <ion-card-content>
+          <p>Select a method below to receive verification code</p>
+          <form #loginForm="ngForm" novalidate>
+            <ion-list>
+              <ion-radio-group value="Mobile" (ionChange)="radioGroupChange($event)">
+                
+                <ion-item class="ion-no-padding">
+                  
+                  <ion-label><p>Mobile</p>{{contact_number}}</ion-label>
+                  <ion-radio slot="start" name="verification_type" value="Mobile" class="ion-margin-end"></ion-radio>
+                </ion-item>
+                
+                <ion-item class="ion-no-padding">
+                  
+                  <ion-label><p>Email</p>{{email_address}}</ion-label>
+                  <ion-radio slot="start" name="verification_type" value="Email" class="ion-margin-end"></ion-radio>
+                </ion-item>
+
+             </ion-radio-group>
+            </ion-list>
+
+              
+            <ion-item lines="none">
+              <p class="ion-padding">
+                <ion-button (click)="onUpdateProfile(loginForm)" type="submit" expand="block" fill="outline" shape="round" size="default">Get Code</ion-button>
+              </p>
+            </ion-item>
+
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="container" *ngIf="code_received==1">
+        <h2>Let's confirm your code.</h2>
+        <ion-card class="ion-margin-top">
+          <ion-card-content>
+            <p class="ion-padding-bottom">Type the code we sent you on {{this.email_address}}</p>
+            <form #loginForm="ngForm" novalidate>
+            <ion-label position="stacked" color="primary" class="frm_label ion-padding-top">Verification Code:</ion-label>
+              <ion-input [(ngModel)]="login.code" name="code" type="text" #code="ngModel" spellcheck="false" autocapitalize="off"
+                required>
+              </ion-input>
+            <ion-text color="danger">
+              <p [hidden]="code.valid || submitted == false" class="ion-no-padding err">
+                This field is required
+              </p>
+            </ion-text>
+
+            <p>Your data is secure with us and we do not sell this information to any 3rd party vendor, website, or organization.</p>
+            <p class="ion-padding">
+              <ion-button (click)="onVerify(loginForm)" type="submit" fill="outline" shape="round" size="default">Confirm</ion-button>
+
+              <span style="float: right;">Didn't receive the code? <a style="float:right" (click)="sendCode()">Send Again</a></span>
+            </p>
+          </form>
+          </ion-card-content>
+        </ion-card>
+    </div>
+  </div>
+</ion-content>

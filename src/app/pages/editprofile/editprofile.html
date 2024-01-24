@@ -1,0 +1,64 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+<ion-content>
+  <div class="common-content">
+      <div class="container">
+        <h2>Edit Profile</h2>
+      <ion-card class="ion-margin-top">
+        <ion-card-content>
+          <form #loginForm="ngForm" novalidate>
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked" class="frm_label">First Name</ion-label>
+              <ion-input [(ngModel)]="profile.first_name" name="first_name" type="text" #first_name="ngModel" spellcheck="false" autocapitalize="off" required></ion-input>
+              <ion-text color="danger">
+                <p [hidden]="first_name.valid || submitted == false" class="ion-padding-start err">
+                  This field is required
+                </p>
+              </ion-text>
+            </ion-item>
+
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked" class="frm_label">Last Name</ion-label>
+              <ion-input [(ngModel)]="profile.last_name" name="last_name" type="text" #last_name="ngModel" spellcheck="false" autocapitalize="off" required></ion-input>
+              <ion-text color="danger">
+                <p [hidden]="last_name.valid || submitted == false" class="ion-padding-start err">
+                  This field is required
+                </p>
+              </ion-text>
+            </ion-item>
+
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked" class="frm_label">Contact Number</ion-label>
+              <ion-input [(ngModel)]="profile.contact_number" name="contact_number" type="text" #contact_number="ngModel" spellcheck="false" autocapitalize="off" required></ion-input>
+              <ion-text color="danger">
+                <p [hidden]="contact_number.valid || submitted == false" class="ion-padding-start err">
+                  This field is required
+                </p>
+              </ion-text>
+            </ion-item>
+
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label position="stacked" class="frm_label">Address</ion-label>
+              <ion-input [(ngModel)]="profile.address" name="address" type="text" #address="ngModel" spellcheck="false" autocapitalize="off" required></ion-input>
+              <ion-text color="danger">
+                <p [hidden]="address.valid || submitted == false" class="ion-padding-start err">
+                  This field is required
+                </p>
+              </ion-text>
+            </ion-item>
+
+              
+            <ion-item lines="none">
+              <p class="ion-padding">
+                <ion-button (click)="onUpdateProfile(loginForm)" type="submit" expand="block" fill="outline" shape="round" size="default">Update Profile</ion-button>
+              </p>
+            </ion-item>
+
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

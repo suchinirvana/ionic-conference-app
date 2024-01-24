@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 
-import { MenuController, Platform, ToastController } from '@ionic/angular';
+import { MenuController, Platform, ToastController, IonRouterOutlet, AlertController  } from '@ionic/angular';
 
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -10,6 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+import {Location} from '@angular/common';
+import { FirebaseX } from "@ionic-native/firebase-x/ngx";
+
 
 @Component({
   selector: 'app-root',
@@ -18,26 +21,41 @@ import { UserData } from './providers/user-data';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+  @ViewChildren(IonRouterOutlet) routerOutlets: QueryList < IonRouterOutlet > ;
+
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
+
   appPages = [
     {
-      title: 'Schedule',
-      url: '/app/tabs/schedule',
-      icon: 'calendar'
-    },
-    {
-      title: 'Speakers',
-      url: '/app/tabs/speakers',
-      icon: 'people'
-    },
-    {
-      title: 'Map',
+      title: 'Home',
       url: '/app/tabs/map',
-      icon: 'map'
+      icon: 'home'
     },
     {
-      title: 'About',
+      title: 'Explore',
+      url: '/app/tabs/search',
+      icon: 'search'
+    },
+    {
+      title: 'How It Works',
       url: '/app/tabs/about',
       icon: 'information-circle'
+    },
+    {
+      title: 'Contact Us',
+      url: '/app/tabs/support',
+      icon: 'headset'
+    },
+    {
+      title: 'Privacy Policy',
+      url: '/app/tabs/content/privacy-policy',
+      icon: 'book'
+    },
+    {
+      title: 'Terms & Conditions',
+      url: '/app/tabs/content/terms-and-conditions',
+      icon: 'book'
     }
   ];
   loggedIn = false;
@@ -53,6 +71,9 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
+    private alertController: AlertController,
+    private location: Location,
+    private firebaseX: FirebaseX
   ) {
     this.initializeApp();
   }
@@ -86,7 +107,57 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.backButtonEvent();
+
+      this.firebaseX.getToken()
+        .then(token => console.log(`The token is ${token}`))
+        .catch(error => console.error('Error getting token', error));
+
+      this.firebaseX.onMessageReceived()
+        .subscribe(data => console.log(`User opened a notification ${data}`));
+
+      this.firebaseX.onTokenRefresh()
+        .subscribe((token: string) => console.log(`Got a new token ${token}`));
+        
     });
+  }
+
+  backButtonEvent() {
+    this.platform.backButton.subscribeWithPriority(0, () => {
+      this.routerOutlets.forEach(async(outlet: IonRouterOutlet) => {
+        if (this.router.url != '/' && this.router.url != '/map' && this.router.url != '/tabs/map' && this.router.url != '/app/tabs/map') {
+          // await this.router.navigate(['/']);
+          await this.location.back();
+        } else if (this.router.url === '/' || this.router.url === '/map' || this.router.url === '/tabs/map' || this.router.url === '/app/tabs/map') {
+          if (new Date().getTime() - this.lastTimeBackPress >= this.timePeriodToExit) {
+            this.lastTimeBackPress = new Date().getTime();
+            this.presentAlertConfirm();
+          } else {
+            navigator['app'].exitApp();
+          }
+        }
+      });
+    });
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      // header: 'Confirm!',
+      message: 'Are you sure you want to exit the app?',
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {}
+      }, {
+        text: 'Close App',
+        handler: () => {
+          navigator['app'].exitApp();
+        }
+      }]
+    });
+  
+    await alert.present();
   }
 
   checkLoginStatus() {
@@ -117,13 +188,13 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
+      return this.router.navigateByUrl('/app/tabs/map');
     });
   }
 
   openTutorial() {
-    this.menu.enable(false);
-    this.storage.set('ion_did_tutorial', false);
+    this.menu.enable(true);
+    this.storage.set('ion_did_tutorial', true);
     this.router.navigateByUrl('/tutorial');
   }
 }

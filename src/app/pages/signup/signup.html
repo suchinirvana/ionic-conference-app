@@ -1,46 +1,89 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Signup</ion-title>
-  </ion-toolbar>
+<page-header></page-header>
 </ion-header>
-
 <ion-content>
-
-  <div class="signup-logo">
-    <img src="assets/img/appicon.svg" alt="Ionic Logo">
-  </div>
-
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+<div class="common-content">
+  <div class="container">
+    <h2>Register</h2>
+    <p class="not-member">Already a member? <a routerLink="/app/tabs/login">Login Here</a></p>
+    <div class="form-field">
+    
   <form #signupForm="ngForm" novalidate>
-    <ion-list lines="none">
-      <ion-item>
-        <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>
-        </ion-input>
-      </ion-item>
-      <ion-text color="danger">
-        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
-          Username is required
-        </p>
-      </ion-text>
+    <ion-label position="stacked" color="primary" class="frm_label">First Name</ion-label>
+    <ion-input oninput="this.value = this.value.replace(/[^A-Za-z ]|^ /g,'')" [(ngModel)]="signup.first_name" name="first_name" type="text" #first_name="ngModel" (keypress)="letterOnlyValidation($event)" required></ion-input>
+    <ion-text color="danger">
+    <p [hidden]="first_name.valid || submitted == false" class="ion-padding-start err">
+      This field is required
+    </p>
+    </ion-text>
 
-      <ion-item>
-        <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
-        </ion-input>
-      </ion-item>
-      <ion-text color="danger">
-        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
-          Password is required
-        </p>
-      </ion-text>
-    </ion-list>
+    <ion-label position="stacked" color="primary" class="frm_label">Last Name</ion-label>
+    <ion-input oninput="this.value = this.value.replace(/[^A-Za-z ]|^ /g,'')" [(ngModel)]="signup.last_name" name="last_name" type="text" #last_name="ngModel" (keypress)="letterOnlyValidation($event)" required></ion-input>
+    <ion-text color="danger">
+    <p [hidden]="last_name.valid || submitted == false" class="ion-padding-start err">
+      This field is required
+    </p>
+    </ion-text>
 
-    <div class="ion-padding">
-      <ion-button (click)="onSignup(signupForm)" type="submit" expand="block">Create</ion-button>
+    <ion-label position="stacked" color="primary" class="frm_label">Email</ion-label>
+    <ion-input oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.()@ ]|^ /g,'')" [(ngModel)]="signup.email_address" name="email_address" type="text" #email_address="ngModel" required>
+    </ion-input>
+  <ion-text color="danger">
+    <p [hidden]="email_address.valid || submitted == false" class="ion-padding-start err">
+      Enter a valid email
+    </p>
+  </ion-text>
+
+  <div class="icon-row">
+    <ion-label position="stacked" color="primary" class="frm_label">Password</ion-label>
+    <ion-input oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.()@#%^*=_+ ]|^ /g,'')" [(ngModel)]="signup.password" name="password" type="{{passwordShown ? 'text' : 'password'}}" #password="ngModel" required>
+    </ion-input>
+
+    <ion-icon class="faeye" slot="end" name="{{passwordShown ? 'eye' : 'eye-off'}}" (click)="togglePasswordVisiblity()"></ion-icon>
     </div>
+    <ion-text color="danger">
+      <p [hidden]="password.valid || submitted == false" class="ion-padding-start err">
+        Password is required
+      </p>
+    </ion-text>
+    
+    <div class="phone">
+      <ion-label position="stacked" color="primary" class="frm_label">Mobile Number</ion-label>
+      <div class="phone_code">{{phone_code}}</div>
+      <ion-input oninput="this.value = this.value.replace(/[^A-Za-z ]|^ /g,'')" style="padding-left: 55px!important" [(ngModel)]="signup.contact_number" name="contact_number" type="text" #contact_number="ngModel" (keypress)="numberOnlyValidation($event)"  required></ion-input>
+
+      <ion-text color="danger">
+        <p [hidden]="contact_number.valid || submitted == false" class="err">
+          This field is required
+        </p>
+      </ion-text>
+    </div>
+      
+      <ion-label position="stacked" color="primary" class="frm_label">City</ion-label>
+      <input oninput="this.value = this.value.replace(/[^A-Za-z ]|^ /g,'')" [(ngModel)]="signup.city" type="text" id="pac-input" name="city" #city="ngModel" required />
+
+     <ion-text color="danger">
+      <p [hidden]="city.valid || submitted == false" class="err">
+        This field is required
+      </p>
+    </ion-text>
+
+        <p class="ion-padding">
+          <ion-button 
+             type="submit" fill="outline" shape="round" size="default"
+             (click)="onSignup(signupForm)"
+          >
+            Create Account
+          </ion-button>
+          </p>
+
   </form>
+
+  </div>
+</div>
+</div>
 
 </ion-content>

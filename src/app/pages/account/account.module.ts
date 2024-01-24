@@ -4,12 +4,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { AccountPage } from './account';
 import { AccountPageRoutingModule } from './account-routing.module';
+import { ComponentsModule } from '../../components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    AccountPageRoutingModule
+    AccountPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [
     AccountPage,

@@ -1,0 +1,44 @@
+body { color: #000000; font-size: 14px; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-family: 'Montserrat', sans-serif; line-height: 1.814 }
+* { border: none; margin: 0; outline: none !important; padding: 0; vertical-align: baseline; }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    line-height: normal;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="file"], input[type="url"], input[type="number"], input[type="date"], select, textarea, ion-input { 
+font-family: 'Montserrat', sans-serif; 
+background: #fff!important; 
+border: 1px solid #d5d5d5; 
+border-radius: 4px!important; 
+color: #959595; 
+display: block; 
+font-size: 14px; 
+font-weight: 400; 
+line-height: 20px !important; 
+padding: 14px 17px; 
+position: relative; 
+width: 100%; 
+height: 50px; 
+ }
+
+ a{ color : #0050a9; }
+.container ul{padding: 5px 20px!important;}
+ion-button{ --border-width: 1px; --border-color:#003065; text-transform: capitalize;font-family: 'Montserrat', sans-serif;font-size: 14px; font-weight: normal;font-style: normal;line-height: 20px; }
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="number"]:focus, input[type="date"]:focus, select:focus, textarea:focus, input[type="url"]:focus { border-color: #003065; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+textarea { height: 120px; resize: none; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 14px; }
+select { -moz-appearance: menulist; -webkit-appearance: menulist; padding-left: 15px }
+select option { font-size: 14px; font-weight: 400; }
+input[type="checkbox"], input[type="radio"] { display: inline-block; margin-right: 5px; vertical-align: top; }
+
+.container { width: 100% !important; padding: 0 15px }
+.common-content { padding: 30px 0; background-color: #f5f5f5; height:100% }
+.common-content .btn { white-space: normal; }
+.common-content h1, .common-content .h1, .common-content h2, .common-content .h2 { font-size: 30px; }
+.common-content h3, .common-content .h3 { font-size: 24px; }
+.common-content h4, .common-content .h4 { font-size: 22px; }
+.common-content h4, .common-content .h4, .common-content h5, .common-content .h5 { font-size: 20px; }
+.common-content h6, .common-content .h6 { font-size: 18px; }
+
+ion-list{ background: none; }
+

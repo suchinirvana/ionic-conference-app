@@ -1,0 +1,32 @@
+<ion-header>
+  <page-header></page-header>
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar placeholder="Search" [(ngModel)]="queryText" (ionChange)="getData()"></ion-searchbar>
+
+  <ion-grid fixed>
+          <ion-row *ngIf="series.length>0">
+                <ion-col *ngFor="let obj of series; let s = index" class="ion-align-self-center" size="12" size-md="12">
+                  <ion-item detail={false} button (click)="testClick($event)" [attr.data-id]="obj.id">
+                    <ion-avatar slot="start" class="ion-padding" [attr.data-id]="obj.id">
+                      <img *ngIf="obj.user.user_image_url" src={{obj.user.user_image_url}} alt="" [attr.data-id]="obj.id" />
+                      <img *ngIf="!obj.user.user_image_url" src="https://www.mysafealley.com/assets/front/images/placeholder.png" alt="" [attr.data-id]="obj.id" />
+                    </ion-avatar>
+                    <ion-label [attr.data-id]="obj.id">
+                      <h2 [attr.data-id]="obj.id">{{obj.address}}</h2>
+                      <h3 [attr.data-id]="obj.id">{{obj.user.user_name}}</h3>
+                    </ion-label>
+                  </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="series.length==0 && queryText">
+              <ion-item>
+                <p>No record found. Please refine your search.</p>
+              </ion-item>
+            </ion-row>
+        </ion-grid>
+
+
+</ion-content>

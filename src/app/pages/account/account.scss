@@ -1,4 +1,63 @@
 img {
-  max-width: 140px;
-  border-radius: 50%;
-}
+    max-width: 140px;
+    border-radius: 50%;
+  }  
+  .max-cw {
+    max-width: 510px;
+    margin: 0 auto;
+  }
+  ion-card{ }
+
+  p{ font-size : 14px; text-align: center; width: 100% }
+.list-ios .item, ion-text{ }
+
+  .gray-wrap {
+    float: left;
+    width: 100%;
+    border-radius: 8px;
+    margin: 30px 0 0;
+  }
+
+  ion-label{ color:#fff; opacity : 1; font-size : 14px }
+  ion-datetime { --placeholder-color : #fff; opacity : 1 }
+  .frm_label {
+    color: #ffffff;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  .btn.red-btn {
+    background-color: #dd0048;
+    color: #fff;
+    border-color: #dd0048;
+  }
+
+  .btn {
+    position: relative;
+    border: 1px solid #bbbbbb;
+    border-radius: 30px;
+    padding: 10px 30px;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    background-color: transparent;
+  }
+
+  .err{ font-size: 13px; margin-top: 3px; margin-bottom : 8px}
+  
+  .my-custom-class input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="tel"], input[type="file"], input[type="url"], input[type="number"], input[type="date"], select, textarea {
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 5px;
+      color: #807d7d;
+      display: block;
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 20px !important;
+      padding: 13px 20px;
+      position: relative;
+      width: 100%;
+      height: 48px;
+    }
+
+    ion-text{ font-size : 14px; }
+    main, ion-content, .inner-scroll{ background: #f5f5f5 }
